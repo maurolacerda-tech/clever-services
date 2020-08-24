@@ -1,0 +1,25 @@
+{
+    "name": "maurolacerda-tech/clever-banners",
+    "description": "Módulo de criação de banners do CMS da cleverweb.com.br",
+    "authors": [
+        {
+            "name": "maurolacerda-tech",
+            "email": "contato@maurolacerda.com.br"
+        }
+    ],
+    "require": {
+
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Banners\\": "./"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Banners\\Providers\\BannerServiceProvider"
+            ]
+        }
+    }
+}
