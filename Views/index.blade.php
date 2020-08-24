@@ -32,7 +32,7 @@
 <div class="row clearfix">
     <div class="card table-card"> 
         <div class="card-header text-right">
-            <a href="{{ route('admin.languages.create') }}" class="btn2 btn-dark">
+            <a href="{{ url('panel/'.$slug.'/create') }}" class="btn2 btn-dark">
                 <i class="ik ik-plus"></i>
                 Adicionar
             </a>
@@ -42,6 +42,7 @@
                 <table class="table table-hover mb-0">
                     <thead>
                         <tr>
+                            <th width="120">View</th>
                             <th>Título</th>
                             <th width="100">Ordem</th>
                             <th width="100">Status</th>
@@ -51,15 +52,20 @@
                     <tbody>
                         @forelse( $banners as $banner )
                         <tr>
+                            <td>
+                                <img src="{{ url("storage/banners/".$banner->image) }}" alt="{{$banner->name}}">
+                            </td>
                             <td>{{$banner->name}}</td>
                             <td>
-                                ordem aqui    
+                                {{ Form::open(['url' => ['panel/'.$slug.'/'.$banner->id.'/order'], 'method' => 'POST', 'id' => 'formorder'.$banner->id ]) }}
+                                    {{Form::select('order', $orders, $banner->order ,['class' => 'form-control fieldOrder fs-13'])}}
+                                {{ Form::close() }}    
                             </td>  
                             <td>
-                                <input type="checkbox" class="js-status" @if ($banner->status == 'active') checked @endif onchange="event.preventDefault();document.getElementById('form-language-status{{$banner->id}}').submit();"  />
+                                <input type="checkbox" class="js-status" @if ($banner->status == 'active') checked @endif onchange="event.preventDefault();document.getElementById('form-status{{$banner->id}}').submit();"  />
                             </td>                      
                             <td>
-                                <a href="{{ route('admin.banners.edit', ['language' => $banner->id]) }}" title="" data-toggle="tooltip" data-placement="top" data-original-title="editar" class="mr-2">
+                                <a href="{{ url('panel/'.$slug.'/edit/'.$banner->id)}}" title="" data-toggle="tooltip" data-placement="top" data-original-title="editar" class="mr-2">
                                     <i class="ik ik-edit f-16 mr-15 text-green"></i>
                                 </a>
 
@@ -70,7 +76,7 @@
 
                                 <div class="modal fade" id="deleteModal{{$banner->id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModal{{$banner->id}}Label" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
-                                        {{ Form::open(['route' => ['admin.languages.destroy',$banner->id], 'method' => 'DELETE', 'id' => 'form-delete'.$banner->id ]) }}
+                                        {{ Form::open(['url' => ['panel/'.$slug.'/'.$banner->id], 'method' => 'DELETE', 'id' => 'form-delete'.$banner->id ]) }}
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalCenterLabel">Excluir</h5>
@@ -90,7 +96,7 @@
 
                                 
                                 
-                                {{ Form::open(['route' => ['admin.languages.updatestatus',$banner->id], 'method' => 'PUT', 'id' => 'form-language-status'.$banner->id ]) }}
+                                {{ Form::open(['url' => ['panel/'.$slug.'/'.$banner->id.'/status'], 'method' => 'POST', 'id' => 'form-status'.$banner->id ]) }}
                                 {{ Form::close() }}
                             </td>
                         </tr>
@@ -103,8 +109,8 @@
                         @endforelse 
                     </tbody>
                 </table>
-                @if($languages instanceof \Illuminate\Pagination\LengthAwarePaginator )
-                    {{$languages->links()}}
+                @if($banners instanceof \Illuminate\Pagination\LengthAwarePaginator )
+                    {{$banners->links()}}
                 @endif
             </div>
 
