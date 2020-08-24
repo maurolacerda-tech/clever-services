@@ -32,7 +32,7 @@ class BannerServiceProvider extends ServiceProvider
         
         $this->mergeConfigFrom(
             __DIR__.'/../Config/banners.php',
-            'pages'
+            'banners'
         );
         
     }
