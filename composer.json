@@ -1,6 +1,6 @@
 {
-    "name": "maurolacerda-tech/clever-banners",
-    "description": "Módulo de criação de banners do CMS da cleverweb.com.br",
+    "name": "maurolacerda-tech/clever-services",
+    "description": "Módulo de criação de serviços do CMS da cleverweb.com.br",
     "authors": [
         {
             "name": "maurolacerda-tech",
@@ -12,13 +12,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\Banners\\": "./"
+            "Modules\\Services\\": "./"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Modules\\Banners\\Providers\\BannerServiceProvider"
+                "Modules\\Services\\Providers\\ServiceServiceProvider"
             ]
         }
     }
