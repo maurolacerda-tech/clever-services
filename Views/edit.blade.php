@@ -8,7 +8,7 @@
             <div class="page-header-title">
                 <i class="{{$menu_icon}} bg-orange"></i>
                 <div class="d-inline">
-                    <h5>Banners</h5>
+                    <h5>{{$menu_name}}</h5>
                 </div>
             </div>
         </div>
@@ -17,9 +17,6 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="{{route('admin.dashboard.index')}}"><i class="ik ik-home"></i></a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="javascript:void(0);">Banners</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">{{$menu_name}}</li>
                 </ol>
@@ -49,8 +46,8 @@
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade active show" id="tab-pt-br" role="tabpanel" aria-labelledby="pills-timeline-tab">
                 <div class="card-body">
-                    {{ Form::model($banner, ['url' => ['/panel/'.$slug, $banner->id], 'method' => 'PUT', 'files' => true ]) }}
-                        @include('Banner::_form')                        
+                    {{ Form::model($service, ['url' => ['/panel/'.$slug, $service->id], 'method' => 'PUT', 'files' => true ]) }}
+                        @include('Service::_form')                        
                         <div class="col-sm-12 text-right">
                             <a href="{{ url('/panel/'.$slug) }}" class="text-orange">Cancelar</a>
                             <button type="submit" class="btn2 btn-dark ml-2">Atualizar</button>
@@ -62,13 +59,13 @@
             <div class="tab-pane fade" id="tab-{{$language->code}}" role="tabpanel" aria-labelledby="pills-timeline-tab">
                 <div class="card-body">
                     @php
-                        $colectionTranslation = $language->translation($menu_id, $banner->id);
+                        $colectionTranslation = $language->translation($menu_id, $service->id);
                     @endphp
                     {{ Form::model($colectionTranslation, ['route' => ['admin.translations.store'], 'method' => 'POST']) }}
                     <input type="hidden" name="menu_id" value="{{$menu_id}}">
                     <input type="hidden" name="code" value="{{$language->code}}">
-                    <input type="hidden" name="parent_id" value="{{$banner->id}}">
-                        @include('Banner::_form_translate')                        
+                    <input type="hidden" name="parent_id" value="{{$service->id}}">
+                        @include('Service::_form_translate')                        
                         <div class="col-sm-12 text-right">
                             <a href="{{ url('/panel/'.$slug) }}" class="text-orange">Cancelar</a>
                             <button type="submit" class="btn2 btn-dark ml-2">Atualizar</button>

@@ -5,7 +5,7 @@
     <div class="col-sm-12">
         <div class="form-group">
             {{ Form::label('image', $combine_filds['image']) }}
-            <input type="file" name="image" class="dropify" @if(isset($banner->image)) data-default-file="{{ url("storage/banners/".$banner->image) }}"@endif data-height="150" data-max-file-size="2M" data-allowed-file-extensions="jpg png jpeg"  />
+            <input type="file" name="image" class="dropify" @if(isset($service->image)) data-default-file="{{ url("storage/services/".$service->image) }}"@endif data-height="150" data-max-file-size="2M" data-allowed-file-extensions="jpg png jpeg"  />
         </div>
     </div>
 </div>

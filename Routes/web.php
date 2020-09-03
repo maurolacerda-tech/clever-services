@@ -7,7 +7,7 @@ Route::prefix('panel')->middleware('auth')->group(function () {
     $menu = new Menu;
     $menu_list = $menu
     ->join('modules', 'menus.module_id', '=', 'modules.id')
-    ->where('modules.controller', 'ServiceController')
+    ->where('modules.controller', 'ServicesController')
     ->where('menus.type','module')
     ->get();
     foreach($menu_list as $menu_item){
@@ -17,7 +17,7 @@ Route::prefix('panel')->middleware('auth')->group(function () {
             $verb = $actions_item_array[0];
             $method = $actions_item_array[1];
             $url = isset($actions_item_array[2]) ? '/'.$actions_item_array[2] : '' ;
-            Route::$verb($menu_item->slug.$url, "ServiceController@$method");
+            Route::$verb($menu_item->slug.$url, "ServicesController@$method");
         }        
     }
 });

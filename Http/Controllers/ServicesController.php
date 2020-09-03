@@ -85,12 +85,11 @@ class ServicesController extends Controller
         $menu_name = $this->menu_name;
         $slug = $this->slug;
         $combine_filds = $this->combine_filds;
-        $target_list = Service::TARGET;
 
         $option_void = ['' => 'Selecione' ];
         $categories_list = $option_void+$service->combo_all();
 
-        return view('Service::create', compact('menu_id', 'menu_icon', 'menu_name', 'target_list', 'slug', 'combine_filds', 'categories_list'));
+        return view('Service::create', compact('menu_id', 'menu_icon', 'menu_name', 'slug', 'combine_filds', 'categories_list'));
     }
 
     public function store(ServiceRequest $request)
@@ -115,14 +114,13 @@ class ServicesController extends Controller
         $menu_name = $this->menu_name;
         $slug = $this->slug;
         $combine_filds = $this->combine_filds;
-        $target_list = Service::TARGET;
         $languages = Language::where('status', 'active')->orderBy('order', 'asc')->get();
 
         $serviceModel = new Service;
         $option_void = ['' => 'Selecione' ];
         $categories_list = $option_void+$serviceModel->combo_all();
 
-        return view('Service::edit', compact('service', 'languages', 'menu_id', 'menu_icon', 'menu_name', 'target_list', 'slug', 'combine_filds', 'categories_list'));
+        return view('Service::edit', compact('service', 'languages', 'menu_id', 'menu_icon', 'menu_name', 'slug', 'combine_filds', 'categories_list'));
     }
 
     public function update(ServiceRequest $request, Service $service)

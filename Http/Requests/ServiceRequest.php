@@ -27,7 +27,8 @@ class ServiceRequest extends FormRequest
             'seo_title' => "nullable",
             'meta_description' => "nullable",
             'meta_keywords' => "nullable",
-            'menu_id' => "required|numeric"
+            'menu_id' => "required|numeric",
+            'parent_id' => "nullable|numeric"
         ];
     }
 }

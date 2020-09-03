@@ -35,6 +35,13 @@ class Service extends Model
         return $count;        
     }
 
+    public function child2($in='')
+    {
+        if(!empty($in))
+            return $this->hasMany(self::class, 'parent_id', 'id')->whereIn('id', explode(',',$in))->orderBy('order', 'asc')->get();
+        else
+            return $this->hasMany(self::class, 'parent_id', 'id')->orderBy('order', 'asc')->get();
+    }
 
     public function combo_all($in='')
     {

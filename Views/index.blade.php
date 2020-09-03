@@ -41,7 +41,7 @@
                         <tr>
                             <th>Título</th>
                             @isset ($combine_filds['parent_id'])
-                                <th width="150">{{$combine_filds['parent_id']}}</th>
+                                <th width="150">Filhos</th>
                             @endisset
                             <th width="100">Ordem</th>                            
                             @isset ($combine_filds['featured'])
