@@ -170,9 +170,10 @@ class ServicesController extends Controller
         $previousOrder = $currentOrder - 1;
         $direction = ($service->order < $currentOrder ? 'up' : 'down');
         $menu_id = $this->menu_id;
+        $parent_id = $service->parent_id;
         
         if($direction =='up'){
-            $listModel = Service::where('menu_id', $menu_id)->where('order', '>=', $nextOrder)
+            $listModel = Service::where('menu_id', $menu_id)->where('parent_id', $parent_id)->where('order', '>=', $nextOrder)
             ->where('id', '<>', $this_id)
             ->orderBy('order', 'asc')->get();
             foreach($listModel as $serviceItem){
@@ -182,19 +183,18 @@ class ServicesController extends Controller
             $service->order = $nextOrder;
             $service->save();
         }else{
-            $listModel = Service::where('menu_id', $menu_id)->where('order', '<=', $previousOrder)
+            $listModel = Service::where('menu_id', $menu_id)->where('parent_id', $parent_id)->where('order', '<=', $previousOrder)
             ->where('id', '<>', $this_id)
             ->orderBy('order', 'asc')->get();
             foreach($listModel as $serviceItem){
                 $serviceItem->order = $serviceItem->order - 1;
                 $serviceItem->save();
             }
-
             $service->order = $previousOrder;
             $service->save();
         }
         $cont = 1;
-        $listModel = Service::where('menu_id', $menu_id)->orderBy('order', 'asc')->get();
+        $listModel = Service::where('menu_id', $menu_id)->where('parent_id', $parent_id)->orderBy('order', 'asc')->get();
         foreach($listModel as $serviceItem){
             $serviceItem->order = $cont;
             $serviceItem->update();
