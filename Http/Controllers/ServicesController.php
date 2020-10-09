@@ -100,6 +100,10 @@ class ServicesController extends Controller
         $data = $request->only(array_keys($request->rules()));
         if(isset($request->image))
             $data['image'] = $this->_uploadImage($request);
+
+        if(isset($request->image2))
+            $data['image2'] = $this->_uploadImage($request, null, 'image2');
+
         Service::create($data);
         return redirect()->back()->with('success','Adicionado com sucesso!');
     }
@@ -131,6 +135,10 @@ class ServicesController extends Controller
         $data = $request->only(array_keys($request->rules()));
         if(isset($request->image))
             $data['image'] = $this->_uploadImage($request, $service->image);
+
+        if(isset($request->image2))
+            $data['image2'] = $this->_uploadImage($request, $service->image2, 'image2');
+        
         $service->fill($data);
         $service->save();
         return redirect()->back()->with('success','Atualizado com sucesso');
@@ -204,10 +212,10 @@ class ServicesController extends Controller
 
     }
 
-    protected function _uploadImage(Request $request, $nameImage = null)
+    protected function _uploadImage(Request $request, $nameImage = null, $nameField = 'image')
     {
         if(isset($request->image)){           
-            $responseUpload = \Upload::imagePublic($request, 'image', $this->folder, null, $nameImage);
+            $responseUpload = \Upload::imagePublic($request, $nameField, $this->folder, null, $nameImage);
             if($responseUpload->original['success']){
                 return $responseUpload->original['file'];
             }
@@ -215,6 +223,6 @@ class ServicesController extends Controller
         }else{
             return null;
         }
-    }
-
+    }    
+    
 }

@@ -24,7 +24,8 @@ class CreateServicesTable extends Migration
 
             $table->string('name');
             $table->string('slug')->unique()->nullable();  
-            $table->string('image')->nullable(); 
+            $table->string('image')->nullable();
+            $table->string('image2')->nullable();
             $table->string('icon')->nullable();          
             $table->longText('summary')->nullable();
             $table->enum('status', array_keys(\Modules\Services\Models\Service::STATUS))->default('active');

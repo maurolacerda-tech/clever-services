@@ -18,6 +18,7 @@ class ServiceRequest extends FormRequest
             'name'  => 'required|max:191',
             'slug' => "nullable",
             'image' => "nullable|max:191",
+            'image2' => "nullable|max:191",
             'icon' => "nullable",
             'summary' => "nullable", 
             'status' => "nullable|in:active,inactive",

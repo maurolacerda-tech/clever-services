@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
 {
-    protected $fillable = ['name','slug','image','icon','summary','status','featured','order','body','seo_title','meta_description','meta_keywords','menu_id','parent_id'];
+    protected $fillable = ['name','slug','image','image2','icon','summary','status','featured','order','body','seo_title','meta_description','meta_keywords','menu_id','parent_id'];
 
     const STATUS = [
         'active' => 'Ativo',

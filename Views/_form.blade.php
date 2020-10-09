@@ -11,6 +11,17 @@
 </div>
 @endisset
 
+@isset ($combine_filds['image2'])
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            {{ Form::label('image2', $combine_filds['image2']) }}
+            <input type="file" name="image2" class="dropify" @if(isset($service->image2)) data-default-file="{{ url("storage/services/".$service->image2) }}"@endif data-height="150" data-max-file-size="2M" data-allowed-file-extensions="jpg png jpeg"  />
+        </div>
+    </div>
+</div>
+@endisset
+
 
 @isset ($combine_filds['parent_id'])
 <div class="row">
